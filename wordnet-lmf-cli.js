@@ -25,12 +25,10 @@
 
 /*  internal requirements  */
 const fs         = require("mz/fs")
-const path       = require("path")
 
 /*  external requirements  */
 const yargs      = require("yargs")
 const chalk      = require("chalk")
-const yaml       = require("js-yaml")
 
 /*  local requirements  */
 const LMF        = require("./wordnet-lmf-api.js")
@@ -78,7 +76,6 @@ const LMF        = require("./wordnet-lmf-api.js")
                     .describe("e", "number of times to parse and expand XML entities")
         }, async (argv) => {
             try {
-                console.log(argv)
                 const lmf = new LMF({ database: argv.database })
                 await lmf.open()
                 await lmf.import(argv.xmlFile, {
@@ -135,10 +132,9 @@ const LMF        = require("./wordnet-lmf-api.js")
 
     /*  sanity check usage  */
     if (argv._.length === 0) {
-        process.stderr.write(`wordnet-lmf-cli: ERROR: missing command\n`)
+        process.stderr.write("wordnet-lmf-cli: ERROR: missing command\n")
         process.exit(1)
     }
-
 })().catch((err) => {
     /*  fatal error  */
     process.stderr.write(`wordnet-lmf: ${chalk.red("ERROR:")} ${err.message} ${err.stack}\n`)
