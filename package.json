@@ -2,7 +2,7 @@
     "name":        "wordnet-lmf",
     "version":     "0.9.0",
     "description": "WordNet Lexical Markup Framework (LMF)",
-    "keywords":    [ "wordnet", "lmf" ],
+    "keywords":    [ "wordnet", "lmf", "xml", "sqlite", "import", "query" ],
     "main":        "wordnet-lmf-api.js",
     "bin":         { "worldnet-lmf": "wordnet-lmf-cli.js" },
     "repository": {
@@ -28,6 +28,7 @@
     "dependencies": {
         "mz":                      "2.7.0",
         "yargs":                   "11.0.0",
+        "chalk":                   "0.0.0",
         "js-yaml":                 "3.11.0",
         "sax":                     "1.2.4",
         "saxophone":               "0.3.0",
