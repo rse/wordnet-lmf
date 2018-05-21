@@ -24,6 +24,12 @@ the corresponding SQLite database file is just about 20% of the size
 of the LMF XML file and can be queried very fast and with harmless RAM
 consumption.
 
+This NPM module comes with just the LMF CLI and API for processing LMF
+XML files and does not ship with any particular LMF XML files. See the
+companion modules [wordnet-lmf-en](https://npmjs.com/wordnet-lmf-en)
+and [wordnet-lmf-de](https://npmjs.com/wordnet-lmf-de) for English and
+German WordNets in LMF XML/SQLite format.
+
 Data Model
 ----------
 
