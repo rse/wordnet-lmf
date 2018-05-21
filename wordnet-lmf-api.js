@@ -265,9 +265,8 @@ class API {
             output = JSON.stringify(results, null, "    ")
         else if (options.format === "yaml")
             output = YAML.safeDump(results, { indent: 4 })
-        else if (options.format === "raw") {
-            /* no-op */
-        }
+        else if (options.format === "raw")
+            output = results
         return output
     }
     async close () {
