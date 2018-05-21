@@ -55,14 +55,105 @@ Command-Line Interface (CLI)
 ----------------------------
 
 ```sh
-FIXME
+$ wordnet-lmf -d wordnet-lmf-en.db import -f easysax -e 2 wordnet-lmf-en.xml
+$ wordnet-lmf -d wordnet-lmf-en.db query "SELECT * FROM Lemma WHERE writtenForm LIKE '%speaker%';"
+┌────────────────┬────────────────────────┬──────────────┐
+│ lexicalEntryId │ writtenForm            │ partOfSpeech │
+├────────────────┼────────────────────────┼──────────────┤
+│ w116312        │ Speaker                │ n            │
+│ w74130         │ speakerphone           │ n            │
+│ w84953         │ speaker identification │ n            │
+│ w69725         │ speaker system         │ n            │
+│ w42001         │ speakership            │ n            │
+│ w116311        │ native speaker         │ n            │
+│ w74274         │ intercom speaker       │ n            │
+│ w69721         │ loudspeaker            │ n            │
+│ w69724         │ loudspeaker system     │ n            │
+│ w69722         │ speaker                │ n            │
+│ w114606        │ public speaker         │ n            │
+│ w69723         │ speaker unit           │ n            │
+│ w115745        │ salutatory speaker     │ n            │
+│ w117119        │ valedictory speaker    │ n            │
+└────────────────┴────────────────────────┴──────────────┘
 ```
 
 Application Programming Interface (API)
 ---------------------------------------
 
 ```js
-FIXME
+(async () => {
+
+    const LMF   = require("wordnet-lmf")
+    const LMFen = require("wordnet-lmf-en")
+
+    console.log(LMFen.name)
+
+    let lmf = new LMF({ database: LMFen.db })
+    await lmf.open()
+
+    let results = await lmf.query(
+        "SELECT * FROM Lemma WHERE writtenForm LIKE '%speaker%';",
+        { format: "table" }
+    )
+    console.log(results)
+
+    results = await lmf.query(`
+        SELECT    l.writtenForm  AS writtenForm,
+                  l.partOfSpeech AS partOfSpeech,
+                  GROUP_CONCAT(s.synset, ";") AS synset
+        FROM      Lemma l
+        LEFT JOIN Sense s
+        ON        s.lexicalEntryId = l.lexicalEntryId
+        WHERE     l.writtenForm LIKE '%speaker%'
+        GROUP BY  l.writtenForm
+    `, { format: "table" })
+    console.log(results)
+
+    await lmf.close()
+
+})().catch((err) => {
+    console.log(`ERROR: ${err}`)
+})
+```
+
+```
+OMW Princeton WordNet 3.1 (2011-05-26) [156K words, MIT-style]
+┌────────────────┬────────────────────────┬──────────────┐
+│ lexicalEntryId │ writtenForm            │ partOfSpeech │
+├────────────────┼────────────────────────┼──────────────┤
+│ w116312        │ Speaker                │ n            │
+│ w74130         │ speakerphone           │ n            │
+│ w84953         │ speaker identification │ n            │
+│ w69725         │ speaker system         │ n            │
+│ w42001         │ speakership            │ n            │
+│ w116311        │ native speaker         │ n            │
+│ w74274         │ intercom speaker       │ n            │
+│ w69721         │ loudspeaker            │ n            │
+│ w69724         │ loudspeaker system     │ n            │
+│ w69722         │ speaker                │ n            │
+│ w114606        │ public speaker         │ n            │
+│ w69723         │ speaker unit           │ n            │
+│ w115745        │ salutatory speaker     │ n            │
+│ w117119        │ valedictory speaker    │ n            │
+└────────────────┴────────────────────────┴──────────────┘
+┌────────────────────────┬──────────────┬─────────────────────────────────────┐
+│ writtenForm            │ partOfSpeech │ synset                              │
+├────────────────────────┼──────────────┼─────────────────────────────────────┤
+│ Speaker                │ n            │ eng-10-10631309-n                   │
+│ intercom speaker       │ n            │ eng-10-04292572-n                   │
+│ loudspeaker            │ n            │ eng-10-03691459-n                   │
+│ loudspeaker system     │ n            │ eng-10-03691459-n                   │
+│ native speaker         │ n            │ eng-10-10631131-n                   │
+│ public speaker         │ n            │ eng-10-10380672-n                   │
+│ salutatory speaker     │ n            │ eng-10-10549315-n                   │
+│ speaker                │ n            │ eng-10-03691459-n;eng-10-10630188-n │
+│ speaker identification │ n            │ eng-10-05763767-n                   │
+│ speaker system         │ n            │ eng-10-03691459-n                   │
+│ speaker unit           │ n            │ eng-10-03691459-n                   │
+│ speakerphone           │ n            │ eng-10-04270371-n                   │
+│ speakership            │ n            │ eng-10-00604424-n                   │
+│ valedictory speaker    │ n            │ eng-10-10745006-n                   │
+└────────────────────────┴──────────────┴─────────────────────────────────────┘
 ```
 
 License
