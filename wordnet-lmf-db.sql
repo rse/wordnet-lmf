@@ -47,6 +47,7 @@ CREATE TABLE Lemma (
 
 CREATE TABLE Sense (
     lexicalEntryId         TEXT NOT NULL,
+    id                     TEXT,
     synset                 TEXT NOT NULL
 );
 
@@ -63,5 +64,51 @@ CREATE TABLE SyntacticalBehaviour (
 CREATE TABLE Synset (
     id                     TEXT NOT NULL,
     partOfSpeech           VARCHAR(1)
+);
+
+CREATE TABLE Definition (
+    synsetId               TEXT,
+    language               TEXT,
+    sourceSense            TEXT
+);
+
+CREATE TABLE ILIDefinition (
+    synsetId               TEXT,
+    status                 TEXT,
+    note                   TEXT,
+    confidenceScore        TEXT
+);
+
+CREATE TABLE SynsetRelation (
+    synsetId               TEXT,
+    target                 TEXT,
+    relType                TEXT
+);
+
+CREATE TABLE Example (
+    synsetId               TEXT,
+    senseId                TEXT,
+    language               TEXT,
+    note                   TEXT,
+    confidenceScore        TEXT
+);
+
+CREATE TABLE Count (
+    senseId                TEXT,
+    status                 TEXT,
+    note                   TEXT,
+    confidenceScore        TEXT
+);
+
+CREATE TABLE SenseRelation (
+    senseId                TEXT,
+    target                 TEXT,
+    relType                TEXT NOT NULL
+);
+
+CREATE TABLE Tag (
+    senseId                TEXT,
+    tagId                  TEXT,
+    category               TEXT NOT NULL
 );
 

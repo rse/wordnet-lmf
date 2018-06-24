@@ -109,6 +109,7 @@ class API {
             else if (node.name === "Sense")
                 ddl += sql.insert("Sense", {
                     lexicalEntryId:         orElse(stack[0].attributes.id, null),
+                    id:                     orElse(node.attributes.id, null),
                     synset:                 orElse(node.attributes.synset, null)
                 }) + ";\n"
             else if (node.name === "Form")
@@ -125,6 +126,25 @@ class API {
                 ddl += sql.insert("Synset", {
                     id:                     orElse(node.attributes.id, null),
                     partOfSpeech:           orElse(node.attributes.partOfSpeech, null)
+                }) + ";\n"
+            else if (node.name === "Definition")
+                ddl += sql.insert("Definition", {
+                    synsetId:               orElse(stack[0].attributes.id, null),
+                    language:               orElse(node.attributes.language, null),
+                    sourceSense:            orElse(node.attributes.sourceSense, null)
+                }) + ";\n"
+            else if (node.name === "ILIDefinition")
+                ddl += sql.insert("ILIDefinition", {
+                    synsetId:               orElse(stack[0].attributes.id, null),
+                    status:                 orElse(node.attributes.status, null),
+                    note:                   orElse(node.attributes.note, null),
+                    confidenceScore:        orElse(node.attributes.confidenceScore, null)
+                }) + ";\n"
+            else if (node.name === "SynsetRelation")
+                ddl += sql.insert("SynsetRelation", {
+                    synsetId:               orElse(stack[0].attributes.id, null),
+                    target:                 orElse(node.attributes.target, null),
+                    relType:                orElse(node.attributes.relType, null)
                 }) + ";\n"
         }
 
