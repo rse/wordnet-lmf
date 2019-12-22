@@ -50,7 +50,7 @@ class API {
     async open () {
         if (this.db !== null)
             throw new Error("database already open")
-        let existed = await fs.exists(this.options.database)
+        const existed = await fs.exists(this.options.database)
         this.db = await sqlite.open(this.options.database, { Promise: Bluebird })
         if (!existed) {
             let sql = await fs.readFile(path.join(__dirname, "wordnet-lmf-db.sql"), { encoding: "utf8" })
@@ -78,7 +78,7 @@ class API {
 
         /*  prepare parsing LMF XML file and generating SQL DDL  */
         let ddl = ""
-        let stack = [ { name: "LMF", attributes: {} } ]
+        const stack = [ { name: "LMF", attributes: {} } ]
 
         /*  common XML node processing function  */
         const orElse = (value, def) => {
@@ -152,7 +152,7 @@ class API {
         if (options.parser === "sax") {
             /*  SAX: standard-compliant, slower (16s for 90MB XML)  */
             await new Promise((resolve, reject) => {
-                let parser = SAX.parser(true, {
+                const parser = SAX.parser(true, {
                     trim:      true,
                     normalize: true,
                     xmlns:     false,
@@ -183,9 +183,9 @@ class API {
         else if (options.parser === "saxophone") {
             /*  Saxophone: less standard-compliant, faster (10s for 90MB XML) */
             await new Promise((resolve, reject) => {
-                let parser = new Saxophone()
+                const parser = new Saxophone()
                 parser.on("tagopen", (tag) => {
-                    let node = { name: tag.name, attributes: Saxophone.parseAttrs(tag.attrs) }
+                    const node = { name: tag.name, attributes: Saxophone.parseAttrs(tag.attrs) }
                     Object.keys(node.attributes).forEach((name) => {
                         for (let i = 0; i < options.parseEntities; i++)
                             node.attributes[name] = Saxophone.parseEntities(node.attributes[name])
@@ -212,9 +212,9 @@ class API {
         else if (options.parser === "easysax") {
             /*  EasySAX: less standard-compliant, very fast (8s for 90MB XML)  */
             await new Promise((resolve, reject) => {
-                let parser = new EasySAX()
+                const parser = new EasySAX()
                 parser.on("startNode", (elementName, getAttr, unEntities, isTagEnd, getStringNode) => {
-                    let node = { name: elementName, attributes: getAttr() }
+                    const node = { name: elementName, attributes: getAttr() }
                     if (node.attributes === false)
                         node.attributes = {}
                     Object.keys(node.attributes).forEach((name) => {
@@ -255,29 +255,29 @@ class API {
             throw new Error(`invalid format "${options.format}"`)
 
         /*  execute SQL query  */
-        let results = await this.db.all(query)
+        const results = await this.db.all(query)
 
         /*  post-process results  */
         let output = ""
         if (options.format === "table") {
-            let cols = Object.keys(results[0])
-            let table = new Table({
+            const cols = Object.keys(results[0])
+            const table = new Table({
                 head: cols,
                 style: { "padding-left": 1, "padding-right": 1, border: [ ], head: [ ], compact: true },
                 colors: false
             })
             results.forEach((row) => {
-                let cols = Object.keys(row).map((col) => row[col])
+                const cols = Object.keys(row).map((col) => row[col])
                 table.push(cols)
             })
             output = table.toString()
             output += "\n"
         }
         else if (options.format === "csv") {
-            let line = Object.keys(results[0])
+            const line = Object.keys(results[0])
             output += csvLine.encode(line) + "\n"
             results.forEach((row) => {
-                let line = Object.keys(row).map((col) => row[col])
+                const line = Object.keys(row).map((col) => row[col])
                 output += csvLine.encode(line) + "\n"
             })
         }

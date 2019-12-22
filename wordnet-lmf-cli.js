@@ -38,7 +38,7 @@ const LMF        = require("./wordnet-lmf-api.js")
     const my = require("./package.json")
 
     /*  command-line option parsing  */
-    let argv = yargs
+    const argv = yargs
         /* eslint indent: off */
         .usage("Usage: $0 [option ...] <command> [option ...] [arg ...]")
         .help("h")
@@ -106,7 +106,7 @@ const LMF        = require("./wordnet-lmf-api.js")
             try {
                 const lmf = new LMF({ database: argv.database })
                 await lmf.open()
-                let result = await lmf.query(argv.sqlQuery, { format: argv.format })
+                const result = await lmf.query(argv.sqlQuery, { format: argv.format })
                 await lmf.close()
                 if (argv.output === "-")
                     process.stdout.write(result)
