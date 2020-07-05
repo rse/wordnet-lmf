@@ -1,6 +1,6 @@
 {
     "name":        "wordnet-lmf",
-    "version":     "0.9.9",
+    "version":     "0.9.10",
     "description": "WordNet Lexical Markup Framework (LMF)",
     "keywords":    [ "wordnet", "lmf", "xml", "sqlite", "import", "query" ],
     "main":        "wordnet-lmf-api.js",
