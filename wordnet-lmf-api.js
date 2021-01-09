@@ -27,8 +27,8 @@ const path          = require("path")
 const fs            = require("mz/fs")
 
 /*  external requirements  */
-const Bluebird      = require("bluebird")
 const sqlite        = require("sqlite")
+const sqlite3       = require("sqlite3")
 const SAX           = require("sax")
 const Saxophone     = require("saxophone")
 const EasySAX       = require("easysax")
@@ -51,7 +51,10 @@ class API {
         if (this.db !== null)
             throw new Error("database already open")
         const existed = await fs.exists(this.options.database)
-        this.db = await sqlite.open(this.options.database, { Promise: Bluebird })
+        this.db = await sqlite.open({
+            filename: this.options.database,
+            driver:   sqlite3.Database
+        })
         if (!existed) {
             let sql = await fs.readFile(path.join(__dirname, "wordnet-lmf-db.sql"), { encoding: "utf8" })
             sql = sql.replace(/^--.*?\r?\n/mg, "")
