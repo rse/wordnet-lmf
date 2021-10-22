@@ -38,7 +38,7 @@ const LMF        = require("./wordnet-lmf-api.js")
     const my = require("./package.json")
 
     /*  command-line option parsing  */
-    const argv = yargs
+    const argv = await yargs
         /* eslint indent: off */
         .usage("Usage: $0 [option ...] <command> [option ...] [arg ...]")
         .help("h")
