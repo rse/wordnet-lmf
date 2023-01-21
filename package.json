@@ -18,26 +18,27 @@
     "homepage": "https://github.com/rse/wordnet-lmf",
     "bugs":     "https://github.com/rse/wordnet-lmf/issues",
     "devDependencies": {
-        "eslint":                  "7.17.0",
-        "eslint-config-standard":  "16.0.3",
-        "eslint-plugin-promise":   "5.1.1",
-        "eslint-plugin-import":    "2.25.2",
+        "eslint":                  "8.32.0",
+        "eslint-config-standard":  "17.0.0",
+        "eslint-plugin-promise":   "6.1.1",
+        "eslint-plugin-import":    "2.27.5",
         "eslint-plugin-node":      "11.1.0"
     },
     "dependencies": {
         "mz":                      "2.7.0",
-        "yargs":                   "17.2.1",
+        "yargs":                   "17.6.2",
         "chalk":                   "4.1.2",
         "js-yaml":                 "4.1.0",
         "sax":                     "1.2.4",
-        "saxophone":               "0.7.2",
+        "saxophone":               "0.8.0",
         "easysax":                 "0.3.2",
         "csv-line":                "1.2.0",
-        "cli-table":               "0.3.6",
-        "sqlite":                  "4.0.23",
-        "sqlite3":                 "5.0.2",
-        "sql-bricks":              "2.0.5"
+        "cli-table":               "0.3.11",
+        "sqlite":                  "4.1.2",
+        "sqlite3":                 "5.1.4",
+        "sql-bricks":              "3.0.0"
     },
+    "upd":                        [ "!chalk" ],
     "engines": {
         "node":                    ">=8.0.0"
     },
