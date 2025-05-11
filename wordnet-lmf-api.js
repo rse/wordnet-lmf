@@ -254,7 +254,7 @@ class API {
 
         /*  execute SQL query  */
         const statement = this.db.prepare(query)
-        const results = this.db.all(statement)
+        const results = statement.all(statement)
 
         /*  post-process results  */
         let output = ""
