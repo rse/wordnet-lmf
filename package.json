@@ -4,6 +4,7 @@
     "description": "WordNet Lexical Markup Framework (LMF)",
     "keywords":    [ "wordnet", "lmf", "xml", "sqlite", "import", "query" ],
     "main":        "wordnet-lmf-api.js",
+    "types":       "wordnet-lmf-api.d.ts",
     "bin":         { "wordnet-lmf": "wordnet-lmf-cli.js" },
     "repository": {
         "type": "git",
