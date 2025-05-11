@@ -1,23 +1,20 @@
 {
-    "name":        "wordnet-lmf",
-    "version":     "0.9.17",
-    "description": "WordNet Lexical Markup Framework (LMF)",
-    "keywords":    [ "wordnet", "lmf", "xml", "sqlite", "import", "query" ],
-    "main":        "wordnet-lmf-api.js",
-    "types":       "wordnet-lmf-api.d.ts",
-    "bin":         { "wordnet-lmf": "wordnet-lmf-cli.js" },
-    "repository": {
-        "type": "git",
-        "url":  "https://github.com/rse/wordnet-lmf.git"
-    },
+    "name":                        "wordnet-lmf",
+    "version":                     "0.9.17",
+    "description":                 "WordNet Lexical Markup Framework (LMF)",
+    "keywords":                    [ "wordnet", "lmf", "xml", "sqlite", "import", "query" ],
+    "main":                        "wordnet-lmf-api.js",
+    "types":                       "wordnet-lmf-api.d.ts",
+    "bin":                         { "wordnet-lmf": "wordnet-lmf-cli.js" },
+    "repository":                  { "type": "git", "url":  "git+https://github.com/rse/wordnet-lmf.git" },
     "author": {
-        "name":  "Dr. Ralf S. Engelschall",
-        "email": "rse@engelschall.com",
-        "url":   "http://engelschall.com"
+        "name":                    "Dr. Ralf S. Engelschall",
+        "email":                   "rse@engelschall.com",
+        "url":                     "http://engelschall.com"
     },
-    "license":  "MIT",
-    "homepage": "https://github.com/rse/wordnet-lmf",
-    "bugs":     "https://github.com/rse/wordnet-lmf/issues",
+    "license":                     "MIT",
+    "homepage":                    "https://github.com/rse/wordnet-lmf",
+    "bugs":                        "https://github.com/rse/wordnet-lmf/issues",
     "devDependencies": {
         "eslint":                  "8.32.0",
         "eslint-config-standard":  "17.0.0",
@@ -44,6 +41,6 @@
         "node":                    ">=18.0.0"
     },
     "scripts": {
-        "prepublishOnly": "eslint --config eslint.yaml wordnet-lmf-*.js"
+        "prepublishOnly":          "eslint --config eslint.yaml wordnet-lmf-*.js"
     }
 }
