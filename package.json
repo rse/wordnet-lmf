@@ -26,17 +26,17 @@
     },
     "dependencies": {
         "mz":                      "2.7.0",
-        "yargs":                   "17.6.2",
+        "yargs":                   "17.7.2",
         "chalk":                   "4.1.2",
         "js-yaml":                 "4.1.0",
-        "sax":                     "1.2.4",
+        "sax":                     "1.4.1",
         "saxophone":               "0.8.0",
         "easysax":                 "0.3.2",
         "csv-line":                "1.2.0",
         "cli-table":               "0.3.11",
-        "sqlite":                  "4.1.2",
-        "sqlite3":                 "5.1.4",
-        "sql-bricks":              "3.0.0"
+        "sqlite":                  "5.1.1",
+        "sqlite3":                 "5.1.7",
+        "sql-bricks":              "3.0.1"
     },
     "upd":                        [ "!chalk" ],
     "engines": {
