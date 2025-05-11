@@ -159,7 +159,7 @@ OMW Princeton WordNet 3.1 (2011-05-26) [156K words, MIT-style]
 License
 -------
 
-Copyright (c) 2018-2023 Dr. Ralf S. Engelschall (http://engelschall.com/)
+Copyright (c) 2018-2025 Dr. Ralf S. Engelschall (http://engelschall.com/)
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
