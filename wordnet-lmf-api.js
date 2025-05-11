@@ -27,8 +27,7 @@ const path          = require("path")
 const fs            = require("mz/fs")
 
 /*  external requirements  */
-const sqlite        = require("sqlite")
-const sqlite3       = require("sqlite3")
+const SQLite        = require("better-sqlite3")
 const SAX           = require("sax")
 const Saxophone     = require("saxophone")
 const EasySAX       = require("easysax")
@@ -51,10 +50,7 @@ class API {
         if (this.db !== null)
             throw new Error("database already open")
         const existed = await fs.exists(this.options.database)
-        this.db = await sqlite.open({
-            filename: this.options.database,
-            driver:   sqlite3.Database
-        })
+        this.db = new SQLite(this.options.database)
         if (!existed) {
             let sql = await fs.readFile(path.join(__dirname, "wordnet-lmf-db.sql"), { encoding: "utf8" })
             sql = sql.replace(/^--.*?\r?\n/mg, "")
@@ -241,7 +237,6 @@ class API {
             })
         }
 
-        // await fs.writeFile("TEST.sql", ddl, { encoding: "utf8" })
         await this.db.exec("BEGIN TRANSACTION; " + ddl + "COMMIT;")
     }
     async query (query, options = {}) {
@@ -258,7 +253,8 @@ class API {
             throw new Error(`invalid format "${options.format}"`)
 
         /*  execute SQL query  */
-        const results = await this.db.all(query)
+        const statement = this.db.prepare(query)
+        const results = this.db.all(statement)
 
         /*  post-process results  */
         let output = ""
