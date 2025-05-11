@@ -38,9 +38,9 @@
         "sqlite3":                 "5.1.7",
         "sql-bricks":              "3.0.1"
     },
-    "upd":                        [ "!chalk" ],
+    "upd":                         [ "!chalk" ],
     "engines": {
-        "node":                    ">=8.0.0"
+        "node":                    ">=18.0.0"
     },
     "scripts": {
         "prepublishOnly": "eslint --config eslint.yaml wordnet-lmf-*.js"
